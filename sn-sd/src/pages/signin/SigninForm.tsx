@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // First we will import the API_ENDPOINT constant from the `config` folder
-import { API_ENDPOINT } from '../../config/constants';
+import { API_ENDPOINT } from '../../config/constants'
 import { useNavigate } from 'react-router-dom';
 
 const SigninForm: React.FC = () => {

@@ -1,6 +1,6 @@
 // src/pages/signup/SignupForm.tsx
 import React, { useState } from 'react';
-import { API_ENDPOINT } from '../../config/constants';
+import { API_ENDPOINT } from '../../config/constants'
 // import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
