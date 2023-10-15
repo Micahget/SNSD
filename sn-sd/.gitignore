@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Netlify folder
+.netlify
+secretFile.md
+netlify.toml
+smarter-tasks copy
+dev-dist
