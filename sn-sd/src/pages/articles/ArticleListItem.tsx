@@ -2,12 +2,15 @@
 import { useArticlesState } from "../../context/articles/context";
 import { Link } from "react-router-dom";
 
-export default function ArticleListItems() {
+interface ArticleListItemsProps {
+  articleType: string;
+}
+export default function ArticleListItems({ articleType }: ArticleListItemsProps) {
   let state: any = useArticlesState(); // we define this for type checking
   // const dispatch = useArticlesDispatch();
   console.log('state', state)
   if(!state) return null;
-  const { articles, isLoading, isError, errorMessage } = state;
+  let { articles, isLoading, isError, errorMessage } = state;
   console.log('fetched articles',articles);
 
   if (articles.length === 0 && isLoading) {
@@ -22,10 +25,15 @@ export default function ArticleListItems() {
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   }
   );
-  // // This check is to validate ErrorBoundary Implementation. Remove this before milestone submission
-  // if (projects.length === 0) {
-  //   throw Error("Error!!!");
-  // }
+  // now filter the articles by the articleType that is passed from the ArticleNavigation
+  if (articleType !== "Articles") {
+    articles = articles.filter(
+      (article: any) => article.sport.name === articleType
+    );
+  }
+  // if the articleType is "news", then show all the articles
+
+
 
   return (
     <>

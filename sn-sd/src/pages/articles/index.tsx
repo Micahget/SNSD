@@ -1,6 +1,7 @@
 // import React, { Suspense } from "react";
 // import NewsList from "./ArticleList";
 import ArticleList from "./ArticleList";
+import ArticleNavigation from "./ArticleNavigation";
 
 // import ErrorBoundary from "../../components/ErrorBoundary";
 
@@ -12,9 +13,12 @@ const Articles = () => {
           Trending News
         </h2>
       </div>
+      <div className="px-0">
+        <ArticleNavigation />
+      </div>
       {/* <ErrorBoundary>
         <Suspense fallback={<div className="suspense-loading">Comming...</div>}> */}
-      <ArticleList />
+      {/* <ArticleList /> */}
       {/* </Suspense>
       </ErrorBoundary> */}
     </>
