@@ -13,7 +13,7 @@ const Navbar = () => {
   const { pathname } = useLocation(); // this is the current path of the url
 
   const navigation = [
-    { name: "Articles", href: "/dashboard/articles", current: false },
+    { name: "Articles", href: "/dashboard/articles", current: true },
     { name: "Cricket", href: "/dashboard/articles", current: false },
     { name: "American Football", href: "/dashboard/articles", current: false },
   ];

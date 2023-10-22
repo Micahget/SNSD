@@ -35,7 +35,7 @@ const SigninForm: React.FC = () => {
       localStorage.setItem('userData', JSON.stringify(data.user)  ); // localStorage is a browser API
       console.log(data.auth_token);
       // navigate('/dashboard') 
-      navigate("/dashboard") // after successful sign-in we will redirect the user to the secured page
+      navigate("/dashboard/articles") // after successful sign-in we will redirect the user to the secured page
 
 
     } catch (error) {

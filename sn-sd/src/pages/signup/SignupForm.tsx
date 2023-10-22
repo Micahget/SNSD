@@ -34,7 +34,7 @@ const SignupForm: React.FC = () => {
       localStorage.setItem('userData', JSON.stringify(data.user)  ); // localStorage is a browser API
       // navigate('/dashboard')
 
-      navigate("/dashboard")
+      navigate("/dashboard/articles")
 
     } catch (error) {
       console.error('Sign-up failed:', error);
