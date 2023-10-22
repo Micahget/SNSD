@@ -1,15 +1,18 @@
+import { RouterProvider } from 'react-router-dom'
 import './App.css'
 import './index.css'
+import routes from './routes'
+import { ArticlesProvider } from './context/articles/context'
 
 function App() {
 
+// render throught RouterProvider
   return (
-    <>
-      <div>
-        <h5 className='text-center text-gray-400 text-5xl'>Hello, world!</h5>
-        </div>
-    </>
+    <div className = "App">
+      <ArticlesProvider>
+        <RouterProvider router={routes} />
+      </ArticlesProvider>
+    </div>
   )
 }
-
 export default App

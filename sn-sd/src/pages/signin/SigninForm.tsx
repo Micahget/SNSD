@@ -31,11 +31,11 @@ const SigninForm: React.FC = () => {
       const data = await response.json();
 
       // after successful sign-in we will store the token in the local storage
-      localStorage.setItem('authToken', data.token); // localStorage is a browser API
+      localStorage.setItem("authToken", data.auth_token); // localStorage is a browser API
       localStorage.setItem('userData', JSON.stringify(data.user)  ); // localStorage is a browser API
-      console.log(data.token)
+      console.log(data.auth_token);
       // navigate('/dashboard') 
-      navigate("/account")
+      navigate("/dashboard") // after successful sign-in we will redirect the user to the secured page
 
 
     } catch (error) {

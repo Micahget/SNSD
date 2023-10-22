@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const SignupForm: React.FC = () => {
-  const [organisationName, setOrganisationName] = useState('');
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -16,24 +15,26 @@ const SignupForm: React.FC = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${API_ENDPOINT}/organisations`, {
+      const response = await fetch(`${API_ENDPOINT}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: organisationName, user_name: userName, email: userEmail, password: userPassword}),
+        body: JSON.stringify({ name: userName, email: userEmail, password: userPassword}),
       });
 
       if (!response.ok) {
         throw new Error('Sign-up failed');
       }
       console.log('Sign-up successful');
-
+      console.log(response)
+      
       // Extract the response body as JSON data
       const data = await response.json();
-      localStorage.setItem('authToken', data.token); // localStorage is a browser API
+      console.log(data.auth_token);
+      localStorage.setItem("authToken", data.auth_token); // localStorage is a browser API
       localStorage.setItem('userData', JSON.stringify(data.user)  ); // localStorage is a browser API
       // navigate('/dashboard')
 
-      navigate("/account")
+      navigate("/dashboard")
 
     } catch (error) {
       console.error('Sign-up failed:', error);
@@ -41,10 +42,6 @@ const SignupForm: React.FC = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label className="block text-gray-700 font-semibold mb-2">Organisation Name:</label>
-        <input type="text" name="organisationName" id="organisationName" value={organisationName} onChange={(e) => setOrganisationName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
-      </div>
       <div>
         <label className="block text-gray-700 font-semibold mb-2">Your Name:</label>
         <input type="text" name="userName" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} className="w-full border rounded-md py-2 px-3 text-white leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
