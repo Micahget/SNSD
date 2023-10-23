@@ -16,6 +16,8 @@ const Navbar = () => {
     { name: "Articles", href: "/dashboard/articles", current: true },
     { name: "Cricket", href: "/dashboard/articles", current: false },
     { name: "American Football", href: "/dashboard/articles", current: false },
+    { name: "Field Hockey", href: "/dashboard/articles", current: false },
+    { name: "Table Tennis", href: "/dashboard/articles", current: false },
   ];
     // set useState, and set the default value to "Articles"
     const [articleType, setArticleType] = useState("news");
@@ -42,13 +44,13 @@ const Navbar = () => {
                       return (
                         <Link
                           key={item.name}
-                              to={item.href}
-                              onClick={() => handleClick(item.name)}
+                          to={item.href}
+                          onClick={() => handleClick(item.name)}
                           className={classNames(
                             isCurrent
-                              ? "bg-slate-50 text-blue-700"
-                              : "text-slate-500 hover:text-blue-600",
-                            "rounded-md px-3 py-2 text-sm font-medium"
+                              ? "border-black border-solid border-b-2 text-black "
+                              : "text-slate-500 ",
+                            "hover:text-gray-700 px-3 py-2 text-sm font-medium"
                           )}
                           aria-current={isCurrent ? "page" : undefined}
                         >
