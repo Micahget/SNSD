@@ -8,10 +8,8 @@ import AccountLayout from "../layout/dashboard";
 import ArticleContainer from "../pages/articles/ArticleContainer";
 import Articles from "../pages/articles";
 
-
 const router = createBrowserRouter([
-    { path: "/", element: <Navigate to="/dashboard/articles" replace /> },
-  {path: '/dashboard', element: <Navigate to="/dashboard/articles" replace />},
+  { path: "/", element: <Navigate to="/dashboard/articles" replace /> },
   {
     path: "/",
     element: <Signin />,
@@ -34,25 +32,22 @@ const router = createBrowserRouter([
   },
   // Protected Routes
   {
-      path: "dashboard",
+    path: "dashboard",
     element: (
-    //   <ProtectedRoute>
-        <AccountLayout />
-    //   </ProtectedRoute>
+      //   <ProtectedRoute>
+      <AccountLayout />
+      //   </ProtectedRoute>
     ),
-      children: [
-          { index: true, element: <Navigate to="/dasboard/articles" replace /> },
+    children: [
+      { index: true, element: <Navigate to="/dashboard/articles" replace /> },
 
-          {
-              path: "articles",
-              element: <ArticleContainer />,
-              children: [
-                  { index: true, element: <Articles /> }
-              ],
-          },
-            ],
-          
-      
+      {
+        path: "articles",
+        element: <ArticleContainer />,
+        children: [{ index: true, element: <Articles /> }],
+      },
+    ],
+
     //     children: [
     //       { index: true, element: <Projects /> },
     //       {
