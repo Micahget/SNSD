@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Disclosure} from "@headlessui/react";
 
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ArticleList from "./ArticleList";
 
 
@@ -10,7 +10,6 @@ const classNames = (...classes: string[]): string =>
   classes.filter(Boolean).join(" ");
 
 const Navbar = () => {
-  const { pathname } = useLocation(); // this is the current path of the url
 
   const navigation = [
     { name: "Articles", href: "/dashboard/articles", current: true },

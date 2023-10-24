@@ -1,6 +1,5 @@
 // import React, { Suspense } from "react";
 // import NewsList from "./ArticleList";
-import ArticleList from "./ArticleList";
 import ArticleNavigation from "./ArticleNavigation";
 
 // import ErrorBoundary from "../../components/ErrorBoundary";

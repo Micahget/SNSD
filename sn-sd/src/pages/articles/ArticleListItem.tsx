@@ -25,14 +25,12 @@ export default function ArticleListItems({ articleType }: ArticleListItemsProps)
     return new Date(b.date).getTime() - new Date(a.date).getTime();
   }
   );
-  // now filter the articles by the articleType that is passed from the ArticleNavigation
+  
   if (articleType !== "Articles") {
     articles = articles.filter(
       (article: any) => article.sport.name === articleType
     );
   }
-  // if the articleType is "news", then show all the articles
-
 
 
   return (
