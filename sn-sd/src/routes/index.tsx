@@ -9,7 +9,7 @@ import ArticleContainer from "../pages/articles/ArticleContainer";
 import Articles from "../pages/articles";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Navigate to="/dashboard/articles" replace /> },
+  { path: "/", element: <Navigate to="/signin" replace /> },
   {
     path: "/",
     element: <Signin />,

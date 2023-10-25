@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { API_ENDPOINT } from '../../config/constants'
 // import { Navigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 const SignupForm: React.FC = () => {
@@ -55,6 +55,9 @@ const SignupForm: React.FC = () => {
         <input type="password" name="userPassword" id="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} className="w-full border rounded-md py-2 px-3 text-white leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue" />
       </div>
       <button type="submit" className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4">Sign up</button>
+      <p className="mt-4 text-center text-black">
+        Already have an account? <Link to={"/signin"}  className="underline">Sign in</Link>
+      </p>
     </form>
   );
 };
