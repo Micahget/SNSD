@@ -3,10 +3,11 @@ import Signin from "../pages/signin";
 import Signup from "../pages/signup";
 import Logout from "../pages/logout";
 import Notfound from "../pages/Notfound";
-// import ProtectedRoute from "./ProtectedRoute";
 import AccountLayout from "../layout/dashboard";
 import ArticleContainer from "../pages/articles/ArticleContainer";
 import Articles from "../pages/articles";
+import MatchContainer from "../pages/matches/MatchContiner";
+import Matches from "../pages/matches";
 
 const router = createBrowserRouter([
   { path: "/", element: <Navigate to="/signin" replace /> },
@@ -33,55 +34,22 @@ const router = createBrowserRouter([
   // Protected Routes
   {
     path: "dashboard",
-    element: (
-      //   <ProtectedRoute>
-      <AccountLayout />
-      //   </ProtectedRoute>
-    ),
+    element: <AccountLayout />,
     children: [
       { index: true, element: <Navigate to="/dashboard/articles" replace /> },
-
       {
         path: "articles",
         element: <ArticleContainer />,
         children: [{ index: true, element: <Articles /> }],
       },
+      // Add the new matches route here
+      {
+        path: "matches",
+        element: <MatchContainer />,
+        children: [{ index: true, element: <Matches /> }],
+      },
     ],
-
-    //     children: [
-    //       { index: true, element: <Projects /> },
-    //       {
-    //         path: ":projectID",
-    //         element: <ProjectDetails />,
-    //         children: [
-    //           { index: true, element: <></> },
-    //           {
-    //             path: "tasks",
-    //             children: [
-    //               { index: true, element: <Navigate to="../" /> },
-    //               {
-    //                 path: "new",
-    //                 element: <NewTask />,
-    //               },
-    //               {
-    //                 path: ":taskID",
-    //                 children: [
-    //                   { index: true, element: <TaskDetailsContainer /> },
-    //                 ],
-    //               },
-    //             ],
-    //           },
-    //         ],
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     path: "members",
-    //     element: <Members />,
-    //   },
-    // ],
   },
-
   // Catch-all route for 404
   {
     path: "*",
