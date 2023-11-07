@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import { useMatchesState } from "../../context/matches/context";
 
 export default function MatchListItems() {
-  console.log("I reached here");
-  let state: any = useMatchesState();
+  console.log("I reached here match list items");
+  const state: any = useMatchesState();
   console.log("state", state);
-  if (!state) {
-    // nothing is inside
-    console.log("ntn");
-    return null;
-  }
+
   let { matches, isLoading, isError, errorMessage } = state;
   console.log("fetched matches", matches);
+  console.log("match length", matches.length);
+  // make is loading true if there are no matches
+  
 
   if (matches.length === 0 && isLoading) {
+    console.log("the matches are loading now");
     return <span>Loading...</span>;
   }
 
@@ -31,26 +31,24 @@ export default function MatchListItems() {
   //       (article: any) => article.sport.name === articleType
   //     );
   //   }
-
   return (
-    <>
+    <div style={{ display: "flex", overflowX: "auto" }}>
       {matches.map((match: any) => {
-        const { id, location, sportName, endsAt, isRunning, teams } = match;
-        // filter the year from eadAt
+        const { id, location, sportName, endsAt, teams } = match;
         const date = new Date(endsAt);
         const year = date.getFullYear();
-        // take the first later from the words of the sportName. like MC
+        console.log("year", year);
 
         const team1 = teams[0];
-          const team2 = teams[1];
-          <div>
+        const team2 = teams[1];
+
+       
           <Link
-            key={id}
             to={``}
-            // to={`${article.id}`}
+            key={id}
+            style={{ flex: "0 0 auto", minWidth: "300px", margin: "10px" }}
           >
-              
-            <div className="bg-white shadow-lg rounded-lg p-6 m-4">
+            <div className="bg-white shadow-lg rounded-lg p-6">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center">
                   <svg
@@ -84,9 +82,9 @@ export default function MatchListItems() {
                 </div>
               </div>
             </div>
-              </Link>
-                </div>
+          </Link>
+        // );
       })}
-    </>
+    </div>
   );
 }

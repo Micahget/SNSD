@@ -31,12 +31,17 @@ const router = createBrowserRouter([
     path: "/notfound",
     element: <Notfound />,
   },
+  {
+    path: "/matches",
+    element: <MatchContainer />,
+    children: [{ index: true, element: <Matches /> }],
+  },
   // Protected Routes
   {
     path: "dashboard",
     element: <AccountLayout />,
     children: [
-      { index: true, element: <Navigate to="/dashboard/articles" replace /> },
+      
       {
         path: "articles",
         element: <ArticleContainer />,

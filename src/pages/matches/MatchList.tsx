@@ -2,9 +2,10 @@ import React from "react";
 import MatchListItem from "./MatchListItem";
 
 const MatchList: React.FC = () => {
-    console.log("I reached to Match List")
+  console.log("I reached to Match 88888888888888888888888888888888888888888888")
+  
   return (
-    <div className="grid gap-4 mt-5">
+    <div className="">
       <MatchListItem />
     </div>
   );

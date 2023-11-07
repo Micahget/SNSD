@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: "Articles", href: "/dashboard/articles", current: false },
-    // { name: "Members", href: "/account/members", current: false },
+    { name: "Matches", href: "/dashboard/matches", current: false },
   ];
 
   return (

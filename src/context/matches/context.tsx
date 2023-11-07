@@ -23,6 +23,7 @@ export const MatchesProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log("state in matches provider", state);
 
   return (
     <MatchesStateContext.Provider value={state}>
