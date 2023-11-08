@@ -10,7 +10,7 @@ import { API_ENDPOINT } from "../../config/constants";
 const classNames = (...classes: string[]): string =>
   classes.filter(Boolean).join(" ");
 
-const Navbar = () => {
+const ArticleNavbar = () => {
 
   //fetch all sports from the API
   const [sports, setSports] = useState<any[]>([]);
@@ -100,4 +100,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default ArticleNavbar;

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useArticlesState } from "../../context/articles/context";
-import { Link } from "react-router-dom";
 import ArticleDetail from "./ArticleDetail";
 
 interface ArticleListItemsProps {

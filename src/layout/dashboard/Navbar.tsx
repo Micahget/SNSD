@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 // import Logo from "../../assets/images/logo.png";
-import { Link, useLocation } from "react-router-dom";
 // import Logo from "../../assets/images/logo.png"
 
 const userNavigation = [
@@ -16,12 +15,11 @@ const classNames = (...classes: string[]): string =>
 
 const Navbar = () => {
  
-  const { pathname } = useLocation(); // this is the current path of the url
 
-  const navigation = [
-    { name: "Articles", href: "/dashboard/articles", current: false },
-    { name: "Matches", href: "/dashboard/matches", current: false },
-  ];
+  // const navigation = [
+  //   { name: "Articles", href: "/dashboard/articles", current: false },
+  //   { name: "Matches", href: "/dashboard/matches", current: false },
+  // ];
 
   return (
     <>
@@ -33,7 +31,7 @@ const Navbar = () => {
                 <div className="flex-shrink-0">
                   {/* <img className="h-8" src={Logo} alt="Smarter Tasks" /> */}
                 </div>
-                <div className="hidden md:block">
+                {/* <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {navigation.map((item) => {
                       const isCurrent = pathname.includes(item.href);
@@ -55,7 +53,7 @@ const Navbar = () => {
                       );
                     })}
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="hidden md:block">
                 <div className="ml-4 flex items-center md:ml-6">

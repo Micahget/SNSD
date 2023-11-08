@@ -1,36 +1,49 @@
-/* eslint-disable */
-import { Link } from "react-router-dom";
-import { useMatchesState } from "../../context/matches/context";
+import { API_ENDPOINT } from "../../config/constants";
+import { useEffect, useState } from "react";
+
+interface MatchFormatProps {
+  id: number;
+  name: string;
+  location: string;
+  sportName: string;
+  endsAt: string;
+  isRunning: boolean;
+  teams: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+}
 
 export default function MatchListItems() {
-  console.log("I reached here match list items");
-  const state: any = useMatchesState();
-  console.log("state", state);
+  const [matches, setMatches] = useState<MatchFormatProps[]>([]);
 
-  let { matches, isLoading, isError, errorMessage } = state;
-  console.log("fetched matches", matches);
-  console.log("match length", matches.length);
-  // make is loading true if there are no matches
-  
+  const fetchMatches = async () => {
+    const token = localStorage.getItem("authToken");
+    try {
+      const response = await fetch(`${API_ENDPOINT}/matches`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Cannot fetch matches");
+      }
+      const data = await response.json();
+      setMatches(data.matches);
+    } catch (error) {
+      console.log("Error fetching matches", error);
+    }
+  };
 
-  if (matches.length === 0 && isLoading) {
-    console.log("the matches are loading now");
-    return <span>Loading...</span>;
-  }
+  useEffect(() => {
+    fetchMatches();
+    console.log("matches", matches);
+  }, []);
 
-  if (isError) {
-    return <span>{errorMessage}</span>;
-  }
-  // filter the matches by time and date..start from the latest
-  //   matches.sort((a: any, b: any) => {
-  //     return new Date(b.date).getTime() - new Date(a.date).getTime();
-  //   });
-
-  //   if (articleType !== "Matches") {
-  //     articles = articles.filter(
-  //       (article: any) => article.sport.name === articleType
-  //     );
-  //   }
   return (
     <div style={{ display: "flex", overflowX: "auto" }}>
       {matches.map((match: any) => {
@@ -39,19 +52,26 @@ export default function MatchListItems() {
         const year = date.getFullYear();
         console.log("year", year);
 
-        const team1 = teams[0];
-        const team2 = teams[1];
+        const team1 = teams[0].name.split(" ")[0]
+        const team2 = teams[1].name.split(" ")[0]
+        const team1Initials = team1
+          .split(" ")
+          .map((word: any) => word[0])
+          .join("");
 
-       
-          <Link
-            to={``}
+        const team2Initials = team2
+          .split(" ")
+          .map((word: any) => word[0])
+          .join("");
+        return (
+          <div
             key={id}
-            style={{ flex: "0 0 auto", minWidth: "300px", margin: "10px" }}
+            style={{ flex: "0 0 100px", minWidth: "200px", margin: "10px" }}
           >
-            <div className="bg-white shadow-lg rounded-lg p-6">
+            <div className="bg-white shadow-lg rounded-lg p-3">
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center">
-                  <svg
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6 mr-2 text-blue-500 cursor-pointer"
                     fill="none"
@@ -64,26 +84,32 @@ export default function MatchListItems() {
                       strokeWidth={2}
                       d="M4 6h16M4 12h16m-7 6h7"
                     />
-                  </svg>
-                  <div className="text-xl font-bold">{sportName}</div>
+                  </svg> */}
+                  <div className=" text-gray-600 font-bold">
+                    {sportName}
+                  </div>
                 </div>
-                <div className="text-gray-600">
+                <div className="text-sm text-gray-600 ">
                   {year}, {location}
                 </div>
               </div>
               <div className="flex justify-between">
                 <div className="flex flex-col items-center">
-                  <div className="text-xl font-bold">{team1}</div>
-                  <div className="text-2xl font-bold">10</div>
+                  <div className="text-base text-gray-600 font-bold">
+                    {team1Initials}
+                  </div>
+                  <div className="text-xl text-gray-600 font-bold">10</div>
                 </div>
                 <div className="flex flex-col items-center">
-                  <div className="text-xl font-bold">{team2}</div>
-                  <div className="text-2xl font-bold">12</div>
+                  <div className="text-base text-gray-600 font-bold">
+                    {team2Initials}
+                  </div>
+                  <div className="text-xl text-gray-600 font-bold">12</div>
                 </div>
               </div>
             </div>
-          </Link>
-        // );
+          </div>
+        );
       })}
     </div>
   );

@@ -6,10 +6,8 @@ import Notfound from "../pages/Notfound";
 import AccountLayout from "../layout/dashboard";
 import ArticleContainer from "../pages/articles/ArticleContainer";
 import Articles from "../pages/articles";
-import MatchContainer from "../pages/matches/MatchContiner";
-import Matches from "../pages/matches";
-import ArticleDetail from "../pages/articles/ArticleDetail";
-// import ArticleDetailContainer from "../pages/article_details/ArticleDetailContainer";
+// import MatchContainer from "../pages/matches/MatchContiner";
+
 const router = createBrowserRouter([
   { path: "/", element: <Navigate to="/signin" replace /> },
   {
@@ -32,11 +30,11 @@ const router = createBrowserRouter([
     path: "/notfound",
     element: <Notfound />,
   },
-  {
-    path: "/matches",
-    element: <MatchContainer />,
-    children: [{ index: true, element: <Matches /> }],
-  },
+  // {
+  //   path: "/matches",
+  //   element: <MatchContainer />,
+  //   children: [{ index: true, element: <Matches /> }],
+  // },
   // Protected Routes
   {
     path: "dashboard",
@@ -46,25 +44,16 @@ const router = createBrowserRouter([
       {
         path: "articles",
         element: <ArticleContainer />,
-        children: [{ index: true, element: <Articles /> },
-          // {
-          //   index: true,
-          //   path: ":articleId",
-          //   element: <ArticleDetail />
-          // }
-        ],
+        children: [{ index: true, element: <Articles /> }],
       },
-
-    ]
-  },
       // Add the new matches route here
       // {
       //   path: "matches",
       //   element: <MatchContainer />,
       //   children: [{ index: true, element: <Matches /> }],
       // },
-  //   ],
-  // },
+    ],
+  },
   // Catch-all route for 404
   {
     path: "*",

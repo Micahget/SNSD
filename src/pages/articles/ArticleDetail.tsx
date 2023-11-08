@@ -1,10 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { fetchArticleById } from "../../context/articles/actions";
-import {
-  useArticlesDispatch,
-  useArticlesState,
-} from "../../context/articles/context";
+import  { Fragment, useEffect, useState } from "react";
+
 import { Transition, Dialog } from "@headlessui/react";
 import { API_ENDPOINT } from "../../config/constants";
 
@@ -24,7 +19,6 @@ interface ArticleIdProps {
 }
 
 const ArticleDetail = ({ articleId, closeArticleModal }: ArticleIdProps) => {
-  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(true);
   const [article, setArticle] = useState<ArticleDetailProp>();
 
