@@ -1,9 +1,10 @@
 /* eslint-disable */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Disclosure} from "@headlessui/react";
 
 import { Link } from "react-router-dom";
 import ArticleList from "./ArticleList";
+import { API_ENDPOINT } from "../../config/constants";
 
 
 const classNames = (...classes: string[]): string =>
@@ -11,15 +12,44 @@ const classNames = (...classes: string[]): string =>
 
 const Navbar = () => {
 
-  const navigation = [
-    { name: "Articles", href: "/dashboard/articles", current: true },
-    { name: "Cricket", href: "/dashboard/articles", current: false },
-    { name: "American Football", href: "/dashboard/articles", current: false },
-    { name: "Field Hockey", href: "/dashboard/articles", current: false },
-    { name: "Table Tennis", href: "/dashboard/articles", current: false },
-  ];
+  //fetch all sports from the API
+  const [sports, setSports] = useState<any[]>([]);
+  const fetchSports = async () => {
+    const token = localStorage.getItem("authToken");
+    try {
+      const response = await fetch(`${API_ENDPOINT}/sports`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Cannot fetch sports");
+      }
+      const data = await response.json();
+      setSports(data.sports);
+    } catch (error) {
+      console.log("Error fetching sports", error);
+    }
+  };
+
+  useEffect(() => {
+    // setSports(sports);
+    fetchSports();
+  }
+  , []);
+
+   const navigation = [
+     { name: "Articles", href: "/dashboard/articles", current: false },
+     ...sports.map((sport) => ({
+       name: sport.name,
+       href: "/dashboard/articles",
+       current: false,
+     })),
+   ];
     // set useState, and set the default value to "Articles"
-    const [articleType, setArticleType] = useState("news");
+    const [articleType, setArticleType] = useState("Articles");
     
     const handleClick = (name: string) => {
         // give the props type to the ArticleList
