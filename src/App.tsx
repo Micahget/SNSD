@@ -3,7 +3,7 @@ import './App.css'
 import './index.css'
 import routes from './routes'
 import { ArticlesProvider } from './context/articles/context'
-import { MatchesProvider } from './context/matches/context'
+// import { MatchesProvider } from './context/matches/context'
 
 function App() {
 
@@ -11,9 +11,9 @@ function App() {
   return (
     <div className="App">
       <ArticlesProvider>
-        <MatchesProvider >
+        {/* <MatchesProvider > */}
         <RouterProvider router={routes} />
-      </MatchesProvider>
+      {/* </MatchesProvider> */}
         </ArticlesProvider>
     </div>
   )

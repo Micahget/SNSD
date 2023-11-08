@@ -14,6 +14,7 @@ const Articles = () => {
       </div>
       <div className="px-0">
         <ArticleNavigation />
+        
       </div>
       {/* <ErrorBoundary>
         <Suspense fallback={<div className="suspense-loading">Comming...</div>}> */}
